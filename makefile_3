@@ -1,0 +1,7 @@
+
+BOUT_TOP	= ../../..
+
+TARGET = trans_neu_drift_J_electric_field_original_Apr13
+SOURCEC		= trans_neu_drift_J_electric_field_original_Apr13.cxx div_ops.cxx loadmetric.cxx radiation.cxx neutral_rates.cxx
+
+include $(BOUT_TOP)/make.config

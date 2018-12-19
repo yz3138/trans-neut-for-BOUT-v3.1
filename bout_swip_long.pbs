@@ -1,0 +1,26 @@
+#!/bin/bash
+# Example PBS job script for simple mpich2 job
+
+# set default resource requirements for job
+# - these can be overridden on the qsub command line (this is for an 8 proc job)
+
+#PBS -l nodes=4:ppn=32
+#PBS -q verylong
+#PBS -N my_job
+#PBS -e my_job.$PBS_JOBID.err
+#PBS -e my_job.$PBS_JOBID.out
+#PBS -V
+
+
+
+#Change to directory from which job was submitted
+cd $PBS_O_WORKDIR
+
+# Number of CPUs / processors
+NP=`cat $PBS_NODEFILE|wc -l`
+
+# run the MPICH2 program mpi_prog
+/opt/mpich-eth/gnu/mpich2-1.5/bin/mpiexec -f $PBS_NODEFILE -n $NP ./trans_neu_drift_J_electric_field_original_Apr13
+
+echo "Running on `cat $PBS_NODEFILE`\n"
+echo "Running from $HOSTNAME\n"
